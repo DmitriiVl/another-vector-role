@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: vector
-  namespace: alexeysetevoi
-  author: Valdem88
+  namespace: dmitriivl
+  author: Dmitrii Vladmirov
   description: Role for installation and managing Vector
 
   license: MIT
