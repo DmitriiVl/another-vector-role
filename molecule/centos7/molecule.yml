@@ -1,6 +1,10 @@
 ---
 dependency:
   name: galaxy
+  options:
+    ignore-certs: True
+    ignore-errors: True
+    role-file: ./requirements.yml
 driver:
   name: docker
 platforms:
@@ -11,11 +15,3 @@ provisioner:
   name: ansible
 verifier:
   name: ansible
-scenario:
-  test_sequence:
-    - destroy
-    - create
-    - converge
-    - idempotence
-    - verify
-    - destroy

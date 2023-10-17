@@ -1,28 +1,23 @@
 ---
 # vars file for vector-role
-vector_config_path: /etc/vector/vector.yaml
+vector_url: https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-1.x86_64.rpm
+vector_version: 0.21.1
 vector_config:
   sources:
-    internal_logs:
-      type: internal_logs
-    local_logs:
+    our_log:
       type: file
+      ignore_older_secs: 600
       include:
         - /var/log/**/*.log
       read_from: beginning
   sinks:
-    local_to_clickhouse:
+    to_clickhouse:
       type: clickhouse
       inputs:
-        - local_logs
-      database: logs
-      endpoint: http://{{ clickhouse_host }}:8123
-      #endpoint: http://{{ hostvars['clickhouse-01'].ansible_host }}:8123
-      table: vector_internal_logs
-      auth:
-        user: "{{ clickhouse_user }}"
-        password: "{{ clickhouse_password }}"
-        strategy: basic
+        - our_log
+      database: custom
+      endpoint: 158.160.100.100:8123
+      table: my_table
       compression: gzip
       healthcheck: false
       skip_unknown_fields: true

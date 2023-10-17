@@ -2,43 +2,39 @@ Role Name
 =========
 
 Роль для установки vector.
+
 - Установка vector
 - Создание systemd unit Vector
 - Конфигурирование vector на передачу данных в clickhouse
 
+
 Requirements
 ------------
+
 
 Role Variables
 --------------
 
-Переменные для установки кредов
-default/main.yml:
-```yaml
-clickhouse_user: netology
-clickhouse_password: netology
-```
+Переменные для установки кредов default/main.yml:
 
-Конфигурация для сбора и передачи логов содержится в vars/main.yml
+clickhouse_user: glisikh
+clickhouse_password: glisikh
 
 Dependencies
 ------------
 
-В `inventory` должен быть хост `clickhouse-01`
-```yaml
-endpoint: http://{{ hostvars['clickhouse-01'].ansible_host }}:8123
-```
+В inventory должен быть хост clickhouse-01
 
-Требуется роль [clickhouse-role](https://github.com/danilabar/clickhouse-role)
+endpoint: ip-adress:8123
+
+Требуется роль clickhouse-role
 
 Example Playbook
 ----------------
 
-```yaml
 hosts: vector
 roles:
   - role: vector-role
-```
 
 License
 -------
@@ -47,3 +43,4 @@ MIT
 
 Author Information
 ------------------
+
