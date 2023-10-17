@@ -1,40 +1,33 @@
-Role Name
+Vector Role
 =========
 
-Роль для установки vector.
-
-- Установка vector
-- Создание systemd unit Vector
-- Конфигурирование vector на передачу данных в clickhouse
-
+This role can install Vector
 
 Requirements
 ------------
 
+This role has tested on:  
+
+- CentOS 7
 
 Role Variables
 --------------
 
-Переменные для установки кредов default/main.yml:
-
-clickhouse_user: glisikh
-clickhouse_password: glisikh
-
-Dependencies
-------------
-
-В inventory должен быть хост clickhouse-01
-
-endpoint: ip-adress:8123
-
-Требуется роль clickhouse-role
+| Variable | Description | Default value | Location |
+|------|------------|---|---|
+|vector_config|specifies vector settings for connection to clickhouse server|`see example below this table`|[defaults folder](defaults/main.yml)|
+|vector_version|version package vector|`0.25.1`|[vars folder](defaults/main.yml)|
+|vector_package|package name|`vector`|[vars folder](vars/main.yml)|
+|vector_architecture|package's processor architecture|`amd64`|[vars folder](vars/main.yml)|
+|vector_config_dir|default folder of vector config|`/etc/vector`|[vars folder](vars/main.yml)|
 
 Example Playbook
 ----------------
 
-hosts: vector
-roles:
-  - role: vector-role
+    - name: Install vector
+      hosts: vector
+      roles:
+        - vector
 
 License
 -------
@@ -44,3 +37,4 @@ MIT
 Author Information
 ------------------
 
+Role created by Dmitrii Vladimirov
