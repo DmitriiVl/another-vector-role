@@ -1,5 +1,6 @@
 galaxy_info:
   namespace: dmitriivl
+  role_name: another-vector-role
   author: DMITRII VLADIMIROV
   description: This role install Vector  
   company: Netology
