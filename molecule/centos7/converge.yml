@@ -3,5 +3,6 @@
   hosts: all
   tasks:
     - name: "Include another-vector-role"
-      include_role:
-        name: "another-vector-role"
+      ansible.builtin.apt:
+        include_role:
+          name: "another-vector-role"
