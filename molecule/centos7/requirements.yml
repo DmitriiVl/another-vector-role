@@ -1,4 +1,4 @@
 ---
 roles:
-  - name: "another-vector-role"
-    src: https://github.com/DmitriiVl/another-vector-role 
+  - name: "vector-role"
+    src: https://github.com/george25031996/vector-role

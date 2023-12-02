@@ -1,29 +1,24 @@
 ---
-# defaults file for vector-role
-vector_version: "0.25.1"
-
-# Vector configuration
+vector_url: https://packages.timber.io/vector/{{ vector_version }}/vector-{{ vector_version }}-1.x86_64.rpm
+# Указать для vector_conf_endpoint ['hostname'] сервера с БД clickhouse
+vector_conf_endpoint: http://127.0.0.1:8123
+vector_version: 0.21.1
 vector_config:
   sources:
-    sample_file:
-      type: file
-      read_from: beginning
-      include:
-        # using syslog as an example
-        - /var/log/syslog
+      our_log:
+        ignore_older_secs: 600
+        include:
+          - /var/log/nginx/access.log
+        read_from: beginning
+        type: file
   sinks:
     to_clickhouse:
       type: clickhouse
       inputs:
-        # we take 'sample_file' from 'sources' above
-        - sample_file
+        - our_log
       database: logs
-      endpoint: http://10.1.2.8:8123
-      table: vector_logs
-      auth:
-        strategy: basic
-        user: vector
-        password: vector
-      healthcheck: true
-      skip_unknown_fields: true
+      endpoint: "{{ vector_conf_endpoint }}"
+      table: access_logs
       compression: gzip
+      healthcheck: false
+      skip_unknown_fields: true
